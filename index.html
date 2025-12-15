@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mini Quiz</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    button { margin: 5px; padding: 10px 20px; }
+    #result { margin-top: 10px; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>Matematika testi</h1>
+  <p id="question"></p>
+
+  <button onclick="checkAnswer(0)" id="btn0"></button>
+  <button onclick="checkAnswer(1)" id="btn1"></button>
+  <button onclick="checkAnswer(2)" id="btn2"></button>
+
+  <p id="result"></p>
+
+  <script>
+    const quiz = [
+      {
+        question: "5 + 3 = ?",
+        options: ["7", "8", "9"],
+        answer: 1
+      },
+      {
+        question: "2 * 4 = ?",
+        options: ["6", "8", "10"],
+        answer: 1
+      }
+    ];
+
+    let current = 0;
+
+    function loadQuestion() {
+      document.getElementById("question").innerText = quiz[current].question;
+      document.getElementById("btn0").innerText = quiz[current].options[0];
+      document.getElementById("btn1").innerText = quiz[current].options[1];
+      document.getElementById("btn2").innerText = quiz[current].options[2];
+      document.getElementById("result").innerText = "";
+    }
+
+    function checkAnswer(choice) {
+      if (choice === quiz[current].answer) {
+        document.getElementById("result").innerText = "To‘g‘ri!";
+      } else {
+        document.getElementById("result").innerText = "Noto‘g‘ri!";
+      }
+      current++;
+      if (current < quiz.length) {
+        setTimeout(loadQuestion, 1000);
+      } else {
+        setTimeout(() => alert("Test tugadi!"), 1000);
+      }
+    }
+
+    loadQuestion();
+  </script>
+</body>
+</html>
